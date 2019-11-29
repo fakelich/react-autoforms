@@ -1,0 +1,17 @@
+{
+  "name": "react-autoforms",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^16.9.13",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.7.2"
+  },
+  "scripts": {
+    "build": "node_modules/.bin/parcel build ./src/index.ts --no-source-maps --experimental-scope-hoisting -d . "
+  },
+  "dependencies": {
+    "react": "^16.12.0"
+  }
+}
