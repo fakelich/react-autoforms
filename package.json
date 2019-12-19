@@ -1,6 +1,6 @@
 {
-  "name": "react-autoforms",
-  "version": "1.0.0",
+  "name": "@fakelich/react-autoforms",
+  "version": "1.0.2",
   "main": "index.js",
   "repository": {
     "url": "https://github.com/fakelich/react-autoforms"
