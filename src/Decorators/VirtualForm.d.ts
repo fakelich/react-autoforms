@@ -3,7 +3,7 @@ import { IVirtualFormProps, IVirtualFormState, IVirtualControlError, IVirtualCon
 export declare function virtualForm<D>(): <T extends IVirtualFormProps<D> = IVirtualFormProps<D>>(Component: React.ComponentClass<T, any>) => {
     new (props: Readonly<T>): {
         state: IVirtualFormState<D>;
-        validator: (name: string, value: any) => Promise<IVirtualControlError<any> | IVirtualControlDetails<any>>;
+        validator: import("../Models").IValidatonFunctions;
         updateControlValue: ({ name, value }: IVirtualControlDetails<any>) => void;
         updateControlState: (error: IVirtualControlError<any>) => void;
         dispatch: (name: string) => (value: any) => void;
@@ -33,7 +33,7 @@ export declare function virtualForm<D>(): <T extends IVirtualFormProps<D> = IVir
     };
     new (props: T, context?: any): {
         state: IVirtualFormState<D>;
-        validator: (name: string, value: any) => Promise<IVirtualControlError<any> | IVirtualControlDetails<any>>;
+        validator: import("../Models").IValidatonFunctions;
         updateControlValue: ({ name, value }: IVirtualControlDetails<any>) => void;
         updateControlState: (error: IVirtualControlError<any>) => void;
         dispatch: (name: string) => (value: any) => void;

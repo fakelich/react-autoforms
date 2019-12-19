@@ -15,7 +15,7 @@
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "build": "node_modules/.bin/parcel build ./index.ts --no-source-maps --experimental-scope-hoisting -d . ",
+    "build": "yarn types && node_modules/.bin/parcel build ./index.ts --no-source-maps --experimental-scope-hoisting -d . ",
     "types": "node_modules/.bin/tsc -p ."
   },
   "dependencies": {

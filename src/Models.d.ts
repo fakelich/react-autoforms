@@ -24,13 +24,22 @@ export interface IVirtualFormProps<D> {
     defaultData: D;
     validationScheme: any;
     onChange?(newValue: any): void;
-    onSubmit?(value: any): void;
+    onSubmit?(value: D): void;
+    onError?(errors: {
+        [key in keyof D]?: string[];
+    }): void;
+}
+export interface IValidatonFunctions {
+    single(name: string, value: any): Promise<IVirtualControlDetails | IVirtualControlError>;
+    list(value: any): Promise<any>;
+}
+export interface IVirtualSubmitterProps {
+    onSubmit(): void;
 }
 export interface IVirtualControlContext<D = any> {
-    state: {
-        [key in keyof D]?: any;
-    };
+    state: IVirtualFormState<D>;
     dispatch(name: string): (value: any) => void;
+    submit(): void;
 }
 interface IVDefaultScheme {
     message?: string;
