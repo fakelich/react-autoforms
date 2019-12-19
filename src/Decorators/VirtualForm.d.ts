@@ -1,13 +1,13 @@
 import React from 'react';
-import { IVirtualFormOptions, IVirtualFormProps, IVirtualFormState, IVirtualControlError } from '../Models';
-export declare function virtualForm<D>({ defaultData, validationScheme, }: IVirtualFormOptions<D>): <T extends IVirtualFormProps = IVirtualFormProps>(Component: React.ComponentClass<T, any>) => {
+import { IVirtualFormProps, IVirtualFormState, IVirtualControlError, IVirtualControlDetails } from '../Models';
+export declare function virtualForm<D>(): <T extends IVirtualFormProps<D> = IVirtualFormProps<D>>(Component: React.ComponentClass<T, any>) => {
     new (props: Readonly<T>): {
         state: IVirtualFormState<D>;
-        validator: (name: any, value: any) => {};
-        updateControlValue(name: keyof D, value: any): void;
-        updateControlState(error: IVirtualControlError<any>): void;
-        dispatch(name: keyof D): (value: any) => void;
-        submit(): void;
+        validator: (name: string, value: any) => Promise<IVirtualControlError<any> | IVirtualControlDetails<any>>;
+        updateControlValue: ({ name, value }: IVirtualControlDetails<any>) => void;
+        updateControlState: (error: IVirtualControlError<any>) => void;
+        dispatch: (name: string) => (value: any) => void;
+        submit: () => void;
         render(): JSX.Element;
         context: any;
         setState<K extends "data" | "errors">(state: IVirtualFormState<D> | ((prevState: Readonly<IVirtualFormState<D>>, props: Readonly<T>) => IVirtualFormState<D> | Pick<IVirtualFormState<D>, K> | null) | Pick<IVirtualFormState<D>, K> | null, callback?: (() => void) | undefined): void;
@@ -33,11 +33,11 @@ export declare function virtualForm<D>({ defaultData, validationScheme, }: IVirt
     };
     new (props: T, context?: any): {
         state: IVirtualFormState<D>;
-        validator: (name: any, value: any) => {};
-        updateControlValue(name: keyof D, value: any): void;
-        updateControlState(error: IVirtualControlError<any>): void;
-        dispatch(name: keyof D): (value: any) => void;
-        submit(): void;
+        validator: (name: string, value: any) => Promise<IVirtualControlError<any> | IVirtualControlDetails<any>>;
+        updateControlValue: ({ name, value }: IVirtualControlDetails<any>) => void;
+        updateControlState: (error: IVirtualControlError<any>) => void;
+        dispatch: (name: string) => (value: any) => void;
+        submit: () => void;
         render(): JSX.Element;
         context: any;
         setState<K extends "data" | "errors">(state: IVirtualFormState<D> | ((prevState: Readonly<IVirtualFormState<D>>, props: Readonly<T>) => IVirtualFormState<D> | Pick<IVirtualFormState<D>, K> | null) | Pick<IVirtualFormState<D>, K> | null, callback?: (() => void) | undefined): void;

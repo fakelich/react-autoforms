@@ -2,6 +2,12 @@
   "name": "react-autoforms",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": {
+    "url": "https://github.com/fakelich/react-autoforms"
+  },
+  "author": {
+    "name": "fakelich"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^16.9.13",
@@ -9,9 +15,12 @@
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "build": "node_modules/.bin/parcel build ./src/index.ts --no-source-maps --experimental-scope-hoisting -d . "
+    "build": "node_modules/.bin/parcel build ./index.ts --no-source-maps --experimental-scope-hoisting -d . ",
+    "types": "node_modules/.bin/tsc -p ."
   },
   "dependencies": {
-    "react": "^16.12.0"
+    "@types/validate.js": "^0.11.0",
+    "react": "^16.12.0",
+    "validate.js": "^0.13.1"
   }
 }

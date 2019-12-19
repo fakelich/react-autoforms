@@ -1,6 +1,6 @@
 import React from 'react';
-import { IVirtualControlOptions, IVirtualControlProps } from '../Models';
-export declare function virtualControl({ name }: IVirtualControlOptions): <T extends IVirtualControlProps<any>>(Component: React.ComponentClass<T, any>) => {
+import { IVirtualControlProps } from '../Models';
+export declare function virtualControl(): <T extends IVirtualControlProps<any>>(Component: React.ComponentClass<T, any>) => {
     new (props: Readonly<T>): {
         render(): JSX.Element;
         context: any;

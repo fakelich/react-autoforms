@@ -1,23 +1,20 @@
 import React from 'react';
-import { IVirtualFormOptions, IVirtualFormProps, IVirtualFormState, IVirtualControlError } from '../Models';
+import { IVirtualFormProps, IVirtualFormState, IVirtualControlError, IVirtualControlDetails } from '../Models';
 import { createValidator } from '../Utils';
 import { VirtualFormContext } from '../Consts';
 
-export function virtualForm<D>({
-    defaultData,
-    validationScheme,
-}: IVirtualFormOptions<D>) {
-    return function <T extends IVirtualFormProps = IVirtualFormProps>(Component: React.ComponentClass<T>) {
+export function virtualForm<D>() {
+    return function <T extends IVirtualFormProps<D> = IVirtualFormProps<D>>(Component: React.ComponentClass<T>) {
         return class extends React.Component<T, IVirtualFormState<D>> {
 
             state: IVirtualFormState<D> = {
-                data: defaultData,
+                data: this.props.defaultData,
                 errors: {},
             };
 
-            validator = createValidator(validationScheme);
+            validator = createValidator(this.props.validationScheme);
 
-            updateControlValue(name: keyof D, value: any) {
+            updateControlValue = ({ name, value }: IVirtualControlDetails) => {
                 this.setState(({ data, errors }) => ({
                     data: {
                         ...data,
@@ -30,7 +27,7 @@ export function virtualForm<D>({
                 }), () => this.props.onChange && this.props.onChange(this.state));
             }
 
-            updateControlState(error: IVirtualControlError<any>) {
+            updateControlState = (error: IVirtualControlError<any>) => {
                 this.setState(({ errors }) => ({
                     errors: {
                         ...errors,
@@ -39,15 +36,15 @@ export function virtualForm<D>({
                 }), () => this.props.onChange && this.props.onChange(this.state));
             }
 
-            dispatch(name: keyof D) {
-                return function (value: any) {
+            dispatch = (name: string) => {
+                return (value: any) => {
                     this.validator(name, value)
                         .then(this.updateControlValue)
                         .catch(this.updateControlState);
                 };
             }
 
-            submit() {
+            submit = () => {
                 this.props.onSubmit && this.props.onSubmit(this.state);
             }
 

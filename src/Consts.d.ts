@@ -1,2 +1,4 @@
 /// <reference types="react" />
-export declare const VirtualFormContext: import("react").Context<{}>;
+import validator from 'validate.js';
+declare const VirtualFormContext: import("react").Context<{}>;
+export { validator, VirtualFormContext, };

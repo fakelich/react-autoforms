@@ -1,3 +1,9 @@
 import { createContext } from 'react';
+import validator from 'validate.js';
 
-export const VirtualFormContext = createContext({});
+const VirtualFormContext = createContext({});
+
+export {
+    validator,
+    VirtualFormContext,
+};
