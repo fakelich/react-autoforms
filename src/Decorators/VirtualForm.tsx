@@ -37,7 +37,7 @@ export function virtualForm<D>() {
             }
 
             dispatch = (name: string) => {
-                return (value: any) => {
+                return (value?: any) => {
                     this.validator.single(name, value)
                         .then(this.updateControlValue)
                         .catch(this.updateControlState);

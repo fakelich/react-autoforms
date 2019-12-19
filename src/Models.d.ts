@@ -38,7 +38,7 @@ export interface IVirtualSubmitterProps {
 }
 export interface IVirtualControlContext<D = any> {
     state: IVirtualFormState<D>;
-    dispatch(name: string): (value: any) => void;
+    dispatch(name: string): (value?: any) => void;
     submit(): void;
 }
 interface IVDefaultScheme {

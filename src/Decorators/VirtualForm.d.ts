@@ -6,7 +6,7 @@ export declare function virtualForm<D>(): <T extends IVirtualFormProps<D> = IVir
         validator: import("../Models").IValidatonFunctions;
         updateControlValue: ({ name, value }: IVirtualControlDetails<any>) => void;
         updateControlState: (error: IVirtualControlError<any>) => void;
-        dispatch: (name: string) => (value: any) => void;
+        dispatch: (name: string) => (value?: any) => void;
         submit: () => void;
         render(): JSX.Element;
         context: any;
@@ -36,7 +36,7 @@ export declare function virtualForm<D>(): <T extends IVirtualFormProps<D> = IVir
         validator: import("../Models").IValidatonFunctions;
         updateControlValue: ({ name, value }: IVirtualControlDetails<any>) => void;
         updateControlState: (error: IVirtualControlError<any>) => void;
-        dispatch: (name: string) => (value: any) => void;
+        dispatch: (name: string) => (value?: any) => void;
         submit: () => void;
         render(): JSX.Element;
         context: any;

@@ -9,14 +9,20 @@ export function virtualControl() {
                 const { name } = this.props;
                 return (
                     <VirtualFormContext.Consumer>
-                        {({ state, dispatch }: IVirtualControlContext) => (
-                            <Component
-                                {...this.props}
-                                {...state.errors[name]}
-                                value={state.data[name]}
-                                onChange={dispatch(name)}
-                            />
-                        )}
+                        {({ state, dispatch }: IVirtualControlContext) => {
+                            if (!state.data.hasOwnProperty(name)) {
+                                dispatch(name)();
+                            }
+
+                            return (
+                                <Component
+                                    {...this.props}
+                                    {...state.errors[name]}
+                                    value={state.data[name]}
+                                    onChange={dispatch(name)}
+                                />
+                            );
+                        }}
                     </VirtualFormContext.Consumer>
                 );
             }
