@@ -24,7 +24,7 @@ export function virtualForm<D>() {
                         ...errors,
                         [name]: {},
                     },
-                }), () => this.props.onChange && this.props.onChange(this.state));
+                }), () => this.props.onChange && this.props.onChange(this.state.data));
             }
 
             updateControlState = (error: IVirtualControlError<any>) => {
@@ -33,19 +33,21 @@ export function virtualForm<D>() {
                         ...errors,
                         ...error
                     }
-                }), () => this.props.onChange && this.props.onChange(this.state));
+                }), () => this.props.onChange && this.props.onChange(this.state.data));
             }
 
             dispatch = (name: string) => {
                 return (value: any) => {
-                    this.validator(name, value)
+                    this.validator.single(value, name)
                         .then(this.updateControlValue)
                         .catch(this.updateControlState);
                 };
             }
 
             submit = () => {
-                this.props.onSubmit && this.props.onSubmit(this.state);
+                this.validator.list(this.state.data)
+                    .then(this.props.onSubmit)
+                    .catch(this.props.onError);
             }
 
             render() {

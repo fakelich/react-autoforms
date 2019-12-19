@@ -1,20 +1,17 @@
 import React from 'react';
 import { VirtualFormContext } from '../Consts';
-import { IVirtualControlProps, IVirtualControlContext } from '../Models';
+import { IVirtualSubmitterProps, IVirtualControlContext } from '../Models';
 
 export function virtualControl() {
-    return function <T extends IVirtualControlProps>(Component: React.ComponentClass<T>) {
+    return function <T extends IVirtualSubmitterProps>(Component: React.ComponentClass<T>) {
         return class extends React.PureComponent<T> {
             render() {
-                const { name } = this.props;
                 return (
                     <VirtualFormContext.Consumer>
-                        {({ state, dispatch }: IVirtualControlContext) => (
+                        {({ submit }: IVirtualControlContext) => (
                             <Component
                                 {...this.props}
-                                {...state.errors[name]}
-                                value={state.data[name]}
-                                onChange={dispatch(name)}
+                                onSubmit={submit}
                             />
                         )}
                     </VirtualFormContext.Consumer>
