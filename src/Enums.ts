@@ -1,4 +1,4 @@
-export enum EVirtualControl {
-    DEFAULT,
-    ERROR
+export enum EVirtualControlState {
+    DEFAULT = 'default',
+    ERROR = 'error',
 }

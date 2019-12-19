@@ -1,6 +1,6 @@
 import { validator } from './Consts';
 import { IVScheme, IVirtualControlDetails, IVirtualControlError, IValidatonFunctions } from './Models';
-import { EVirtualControl } from './Enums';
+import { EVirtualControlState } from './Enums';
 
 export function createValidator<T>(validationScheme: {[key in keyof T]: IVScheme<T>}): IValidatonFunctions {
     return ({
@@ -9,7 +9,7 @@ export function createValidator<T>(validationScheme: {[key in keyof T]: IVScheme
 
             if (results && Object.keys(results).length) {
                 reject({
-                    state: EVirtualControl.ERROR,
+                    state: EVirtualControlState.ERROR,
                     errorText: results[name][0],
                     value,
                 } as IVirtualControlError);

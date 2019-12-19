@@ -1,4 +1,4 @@
-import { EVirtualControl } from './Enums';
+import { EVirtualControlState } from './Enums';
 
 export interface IVirtualFormState<D> {
     data: D;
@@ -7,7 +7,7 @@ export interface IVirtualFormState<D> {
 
 export interface IVirtualControlError<T = any> {
     value: T;
-    state: EVirtualControl;
+    state: EVirtualControlState;
     errorText: string;
 }
 
@@ -26,6 +26,7 @@ export interface IVirtualControlProps<T = any> extends IVirtualControlError<T> {
 export interface IVirtualFormProps<D> {
     defaultData: D;
     validationScheme: any;
+    action?(value: D): Promise<any>;
     onChange?(newValue: any): void;
     onSubmit?(value: D): void;
     onError?(errors: {[key in keyof D]?: string[]}): void;
