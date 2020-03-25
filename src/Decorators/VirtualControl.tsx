@@ -7,9 +7,9 @@ export function virtualControl() {
     /**
      * @param Component Controlled form control.
      */
-    return function <T extends IVirtualControlProps>(Component: React.ComponentClass<T>) {
+    return function <T>(Component: React.ComponentClass<T & IVirtualControlProps>): React.ComponentClass<T & Pick<IVirtualControlProps, 'name' | 'id'>> {
         /** Uncontrolled form control. */
-        return class extends React.PureComponent<T> {
+        return class extends React.PureComponent<T & Pick<IVirtualControlProps, 'name' | 'id'>> {
             static displayName = 'VirtualControl';
 
             render() {

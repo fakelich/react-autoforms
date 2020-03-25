@@ -38,7 +38,7 @@ export interface IValidatonFunctions {
 }
 
 export interface IVirtualSubmitterProps {
-    onSubmit(): void;
+    onSubmit?(): void;
 }
 
 export interface IVirtualControlContext<D = any> {
